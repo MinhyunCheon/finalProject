@@ -15,6 +15,10 @@
 
 			<div class="box">
 				<div class="box-header with-border">
+					<input type="button" id="registBtn" value="글쓰기">
+				</div>
+				
+				<div class="box-header with-border">
 					<h3 class="box-title">LIST ALL PAGE</h3>
 				</div>
 				<div class="box-body">
@@ -65,7 +69,11 @@
 <!-- /.content-wrapper -->
 
 <script>
-
+	$(document).ready(function() {
+		$('#registBtn').click(function() {
+			location.href = 'registForm';
+		});
+	});
 </script>
 
 <%@include file="./include/footer.jsp"%>

@@ -8,5 +8,6 @@
 		<typeAlias type="kr.co.project.model.vo.UserDTO" alias="user_dto"/>
 		
 		<typeAlias type="kr.co.project.bbs.model.vo.BbsVO" alias="bbs_vo"/>
+		<typeAlias type="kr.co.project.bbs.model.vo.BbsDTO" alias="bbs_dto"/>
 	</typeAliases>
 </configuration>

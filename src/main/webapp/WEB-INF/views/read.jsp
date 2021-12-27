@@ -44,12 +44,15 @@
 <div class="box-footer">
 	<button type="submit" class="btn btn-warning">Modify</button>
 	<button type="submit" class="btn btn-danger">REMOVE</button>
-	<button type="submit" class="btn btn-primary">LIST ALL</button>
+	<button type="button" id="listAllBtn" class="btn btn-primary">LIST ALL</button>
 </div>
 
 
 <script>
 	$(document).ready(function(){
+		$('#listAllBtn').click(function() {
+			location.href = 'listAll';
+		});
 	});
 </script>
 

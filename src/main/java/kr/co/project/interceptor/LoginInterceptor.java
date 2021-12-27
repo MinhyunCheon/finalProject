@@ -9,7 +9,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		System.out.println(request.getParameter("id"));
+		System.out.println("LoginInterceptor " + request.getParameter("id"));
 		return true;
 	}
 }

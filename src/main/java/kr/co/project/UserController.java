@@ -21,8 +21,14 @@ public class UserController {
 		
 		String returnPage = "login";
 		if(obj != null) {
-			returnPage = "redirect:/";
+			String dest = (String)session.getAttribute("dest");
+			String qString = (String) session.getAttribute("qString");
+			System.out.println(dest);
+			// redirect:/ 뒤에 이전 경로를 붙이면 redirect:/regist가 아닌 ip가 생략된 regist/만 입력되어 오류 발생
+			returnPage = "redirect:" + ((dest != null) ? dest : "/") + (qString != null ? "?" + qString : "");
 			session.setAttribute("user", obj);
+			session.removeAttribute("dest");
+			session.removeAttribute("qString");
 		}
 		
 		return returnPage;

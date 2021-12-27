@@ -18,4 +18,14 @@ public class BbsSvImpl implements BbsSv {
 		return bbsDao.selectBbsAll();
 	}
 
+	@Override
+	public int insertBbsSv(Object obj) {
+		return bbsDao.insertBbs(obj);
+	}
+
+	@Override
+	public int updateBbsSv(Object obj) {
+		return bbsDao.updateBbsViewCnt(obj);
+	}
+
 }

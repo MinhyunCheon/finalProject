@@ -25,6 +25,8 @@
 	
 	<beans:bean id="test" class="kr.co.project.interceptor.TestInterceptor" />
 	<beans:bean id="login" class="kr.co.project.interceptor.LoginInterceptor" />
+	<beans:bean id="auth" class="kr.co.project.interceptor.AuthInterceptor" />
+	<beans:bean id="page" class="kr.co.project.interceptor.PageInterceptor" />
 	<interceptors>
 		<interceptor>
 			<mapping path="/*.do" />
@@ -33,6 +35,14 @@
 		<interceptor>
 			<mapping path="/login" />
 			<beans:ref bean="login" />
+		</interceptor>
+		<interceptor>
+			<mapping path="/*regist*" />
+			<beans:ref bean="auth" />
+		</interceptor>
+		<interceptor>
+			<mapping path="/*" />
+			<beans:ref bean="page" />
 		</interceptor>
 	</interceptors>
 	

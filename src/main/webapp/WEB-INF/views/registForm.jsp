@@ -15,7 +15,7 @@
 				</div>
 				<!-- /.box-header -->
 
-<form role="form" method="post" action="OOOO">
+<form role="form" method="post" action="regist">
 	<div class="box-body">
 		<div class="form-group">
 			<label for="exampleInputEmail1">Subject</label> 
@@ -30,7 +30,7 @@
 		<div class="form-group">
 			<label for="exampleInputEmail1">Writer</label> 
 			<input type="text"
-				name="writer" class="form-control" readonly value="OOO">
+				name="writer" class="form-control" readonly value="${ user.name }">
 		</div>
 	</div>
 	<!-- /.box-body -->
