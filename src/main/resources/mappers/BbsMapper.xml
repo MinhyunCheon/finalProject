@@ -15,6 +15,26 @@
  			FROM BBS_TBL
  			ORDER BY SEQ DESC
  	</select>
+ 	<select id="selectBbsSearch" parameterType="bbs_search_dto" resultType="bbs_vo">
+ 		SELECT
+ 			SEQ
+ 			, SUBJECT
+ 			, CONTENT
+ 			, WRITER
+ 			, TO_CHAR(REGDATE, 'YYYY-MM-DD') REGDATE
+ 			, VIEWCNT
+ 			FROM BBS_TBL
+ 			WHERE 1=1
+ 			  AND
+ 			  <choose>
+ 			  	<when test="condition == 'subject'">SUBJECT </when>
+ 			  	<when test="condition == 'content'">CONTENT </when>
+ 			  	<when test="condition == 'writer'">WRITER </when>
+ 			  </choose>
+ 			  LIKE '%'||#{searchText}||'%'
+ 			ORDER BY SEQ DESC
+ 	</select>
+ 	
  	<insert id="insertBbs" parameterType="bbs_dto">
  		INSERT INTO BBS_TBL VALUES(
  			BBS_SEQ.NEXTVAL
@@ -25,6 +45,7 @@
  			, 0
  		)
  	</insert>
+ 	
  	<update id="updateBbsViewCnt" parameterType="bbs_vo">
  		UPDATE BBS_TBL SET VIEWCNT = VIEWCNT + 1 WHERE SEQ = #{seq}
  	</update>

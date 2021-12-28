@@ -1,13 +1,17 @@
 package kr.co.project;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.project.bbs.model.vo.BbsDTO;
+import kr.co.project.bbs.model.vo.BbsSearchDTO;
 import kr.co.project.bbs.model.vo.BbsVO;
 import kr.co.project.bbs.service.BbsSv;
 
@@ -35,5 +39,11 @@ public class BbsController {
 	@RequestMapping(value = "regist", method = RequestMethod.POST)
 	public String regist(BbsDTO bt) {
 		return "redirect:/" + (bbsSv.insertBbsSv(bt) == 1 ? "listAll" : "registForm");
+	}
+	
+	@RequestMapping(value = "search", method = RequestMethod.GET)
+	@ResponseBody
+	public List<Object> search(BbsSearchDTO bsd) {
+		return bbsSv.selectBbsSearchSv(bsd);
 	}
 }

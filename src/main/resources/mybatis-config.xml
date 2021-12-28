@@ -9,5 +9,6 @@
 		
 		<typeAlias type="kr.co.project.bbs.model.vo.BbsVO" alias="bbs_vo"/>
 		<typeAlias type="kr.co.project.bbs.model.vo.BbsDTO" alias="bbs_dto"/>
+		<typeAlias type="kr.co.project.bbs.model.vo.BbsSearchDTO" alias="bbs_search_dto"/>
 	</typeAliases>
 </configuration>

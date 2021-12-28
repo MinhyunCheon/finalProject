@@ -17,6 +17,11 @@ public class BbsSvImpl implements BbsSv {
 	public List<Object> selectBbsAllSv() {
 		return bbsDao.selectBbsAll();
 	}
+	
+	@Override
+	public List<Object> selectBbsSearchSv(Object obj) {
+		return bbsDao.selectBbsSearch(obj);
+	}
 
 	@Override
 	public int insertBbsSv(Object obj) {
