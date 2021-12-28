@@ -32,4 +32,14 @@ public class BbsDaoImpl implements BbsDao {
 		return sqlSession.update("bbs.updateBbsViewCnt", obj);
 	}
 	
+	@Override
+	public int updateBbs(Object obj) {
+		return sqlSession.update("bbs.updateBbs", obj);
+	}
+
+	@Override
+	public int deleteBbs(Object obj) {
+		return sqlSession.delete("bbs.deleteBbs", obj);
+	}
+	
 }

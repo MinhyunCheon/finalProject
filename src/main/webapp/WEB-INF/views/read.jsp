@@ -15,10 +15,7 @@
 				</div>
 				<!-- /.box-header -->
 
-<form role="form" method="post" action="ooo">
-
 	<input type='hidden' name='seq' value="${ bbs.seq }">
-
 
 	<div class="box-body">
 		<div class="form-group">
@@ -37,14 +34,14 @@
 				readonly="readonly">
 		</div>
 	</div>
-</form>
+
 
 <!-- /.box-body -->
 
-<div class="box-footer">
-	<button type="submit" class="btn btn-warning">Modify</button>
-	<button type="submit" class="btn btn-danger">REMOVE</button>
-	<button type="button" id="listAllBtn" class="btn btn-primary">LIST ALL</button>
+<div class="box-footer" align="right">
+	<button type="button" id="modifyFormBtn" class="btn btn-warning">수정</button>
+	<button type="button" id="deleteBtn" class="btn btn-danger">삭제</button>
+	<button type="button" id="listAllBtn" class="btn btn-primary">목록</button>
 </div>
 
 
@@ -53,6 +50,29 @@
 		$('#listAllBtn').click(function() {
 			location.href = 'listAll';
 		});
+		
+		$('#deleteBtn').click(function() {
+			if(authValidation() && confirm('해당 글을 삭제합니다.')) location.href = 'deleteBbs?seq=' + ${ bbs.seq } + '&writer=' + '${ bbs.writer }';
+		});
+		
+		$('#modifyFormBtn').click(function() {
+			if(authValidation()) {
+				location.href = 'modifyForm?seq=' + ${bbs.seq}
+								+ '&subject=' + '${bbs.subject}'
+								+ '&content=' + '${bbs.content}'
+								+ '&writer=' + '${bbs.writer}';
+			}
+		});
+		
+		function authValidation() {
+			if('${bbs.writer}' != '${user.id}') {
+				alert('권한이 없습니다.');
+				if('${user.id}'.length == 0)location.href = 'sign-in';
+				return false;
+			}
+			
+			return true;
+		}
 	});
 </script>
 

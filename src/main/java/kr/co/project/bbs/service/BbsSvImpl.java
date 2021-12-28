@@ -29,8 +29,18 @@ public class BbsSvImpl implements BbsSv {
 	}
 
 	@Override
-	public int updateBbsSv(Object obj) {
+	public int updateBbsViewCntSv(Object obj) {
 		return bbsDao.updateBbsViewCnt(obj);
+	}
+	
+	@Override
+	public int updateBbsSv(Object obj) {
+		return bbsDao.updateBbs(obj);
+	}
+
+	@Override
+	public int deleteBbsSv(Object obj) {
+		return bbsDao.deleteBbs(obj);
 	}
 
 }

@@ -38,6 +38,7 @@
 		</interceptor>
 		<interceptor>
 			<mapping path="/*regist*" />
+			<mapping path="/*delete*" />
 			<beans:ref bean="auth" />
 		</interceptor>
 		<interceptor>

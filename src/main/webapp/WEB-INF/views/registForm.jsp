@@ -30,7 +30,7 @@
 		<div class="form-group">
 			<label for="exampleInputEmail1">Writer</label> 
 			<input type="text"
-				name="writer" class="form-control" readonly value="${ user.name }">
+				name="writer" class="form-control" readonly value="${ user.id }">
 		</div>
 	</div>
 	<!-- /.box-body -->

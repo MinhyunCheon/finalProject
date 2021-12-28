@@ -7,4 +7,6 @@ public interface BbsDao {
 	public List<Object> selectBbsSearch(Object obj);
 	public int insertBbs(Object obj);
 	public int updateBbsViewCnt(Object obj);
+	public int updateBbs(Object obj);
+	public int deleteBbs(Object obj);
 }
