@@ -52,4 +52,9 @@ public class BbsDaoImpl implements BbsDao {
 		return sqlSession.delete("bbs.deleteBbs", obj);
 	}
 
+	@Override
+	public int deleteBbsReply(Object obj) {
+		return sqlSession.delete("bbs.deleteBbsReply", obj);
+	}
+
 }

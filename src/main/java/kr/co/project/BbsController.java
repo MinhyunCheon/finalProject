@@ -73,10 +73,17 @@ public class BbsController {
 		return new ModelAndView("read", "bbs", bv);
 	}
 	
-	@RequestMapping(value = "replyBbs", method = RequestMethod.POST)
+	@RequestMapping(value = "bbsReply", method = RequestMethod.POST)
 	@ResponseBody
 	public List<Object> reply(BbsReplyDTO brd) {
 		bbsSv.insertBbsReplySv(brd);
+		return bbsSv.selectBbsReply(brd);
+	}
+	
+	@RequestMapping(value = "removeBbsReply", method = RequestMethod.GET)
+	@ResponseBody
+	public List<Object> deleteReply(BbsReplyDTO brd) {
+		bbsSv.deleteBbsReplySv(brd);
 		return bbsSv.selectBbsReply(brd);
 	}
 }

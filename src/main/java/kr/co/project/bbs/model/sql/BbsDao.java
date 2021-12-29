@@ -11,4 +11,5 @@ public interface BbsDao {
 	public int updateBbsViewCnt(Object obj);
 	public int updateBbs(Object obj);
 	public int deleteBbs(Object obj);
+	public int deleteBbsReply(Object obj);
 }

@@ -11,4 +11,5 @@ public interface BbsSv {
 	public int updateBbsViewCntSv(Object obj);
 	public int updateBbsSv(Object obj);
 	public int deleteBbsSv(Object obj);
+	public int deleteBbsReplySv(Object obj);
 }

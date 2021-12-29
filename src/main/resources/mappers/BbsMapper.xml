@@ -35,7 +35,7 @@
  			ORDER BY SEQ DESC
  	</select>
  	<select id="selectBbsReply" parameterType="bbs_reply_dto" resultType="bbs_reply_dto">
- 		SELECT * FROM REPLY_TBL WHERE SEQ = #{seq}
+ 		SELECT * FROM REPLY_TBL WHERE SEQ = #{seq} ORDER BY RSEQ ASC
  	</select>
  	
  	<insert id="insertBbs" parameterType="bbs_dto">
@@ -71,5 +71,8 @@
  	
  	<delete id="deleteBbs" parameterType="bbs_vo">
  		DELETE FROM BBS_TBL WHERE SEQ = #{seq}
+ 	</delete>
+ 	<delete id="deleteBbsReply" parameterType="bbs_reply_dto">
+ 		DELETE FROM REPLY_TBL WHERE RSEQ = #{rSeq} AND RWRITER = #{rWriter}
  	</delete>
 </mapper>

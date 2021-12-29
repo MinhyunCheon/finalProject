@@ -53,4 +53,9 @@ public class BbsSvImpl implements BbsSv {
 		return bbsDao.deleteBbs(obj);
 	}
 
+	@Override
+	public int deleteBbsReplySv(Object obj) {
+		return bbsDao.deleteBbsReply(obj);
+	}
+
 }

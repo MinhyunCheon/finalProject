@@ -3,6 +3,42 @@
 
 <%@include file="./include/header.jsp"%>
 
+<script type="text/javascript">
+	// 하단 스크립트에 선언 시 a onclick이 인식하지 못함
+	// <!-- --> 주석은 실행 시 오류
+	function removeReply(rSeq) {
+		if(confirm('해당 댓글을 삭제합니다.')) {
+			$.ajax({
+			    type : 'get', // 타입 (get, post, put 등등)
+			    url : '/removeBbsReply', // 요청할 서버url
+			    async : true, // 비동기화 여부 (default : true)
+			    //headers : { // Http header
+			    //  "Content-Type" : "application/json",
+			    //  "X-HTTP-Method-Override" : "POST"
+			    //},
+			    //dataType : 'json', // 데이터 타입 (html, xml, json, text 등등)
+			    data : { // 보낼 데이터 (Object , String, Array)
+			    	seq : $('#seq').val()
+			    	, rSeq : rSeq
+			    	, rWriter : $('#rWriter').val()
+			    },
+			    success : function(result) { // 결과 성공 콜백함수
+			    	uls = ""
+						$.each(result , function(idx, obj) {
+							uls +="<li class='time-label'>"+ obj.rWriter + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+							uls += obj.rContent + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+							if(obj.rWriter == '${user.id}') uls += "<a href='javascript:void(0)' id='replyDel' onclick='removeReply("+ obj.rSeq +");'>x</a>"
+							uls +="</li>"
+						})
+						$("#rList").html(uls);
+			    },
+			    error : function(request, status, error) { // 결과 에러 콜백함수
+			        console.log(error)
+			    }
+			});
+		}
+	}
+</script>
 <!-- Main content -->
 <section class="content">
 	<div class="row">
@@ -74,9 +110,10 @@
 	<!--  -->
 	<ul id="rList">
 			<c:forEach items="${rList}" var="reply">
-				
+				<!-- <input type="hidden" id="rSeq" value="${ reply.rSeq }"> -->
 				<li class="time-label">${ reply.rWriter }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				${ reply.rContent }
+				${ reply.rContent }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<c:if test="${ reply.rWriter eq user.id}"><a href="javascript:void(0)" id="replyDel" onclick="removeReply(${ reply.rSeq });">x</a></c:if>
 				</li>
 			</c:forEach>
 	</ul>
@@ -137,7 +174,7 @@
 			
 			$.ajax({
 			    type : 'post', // 타입 (get, post, put 등등)
-			    url : '/replyBbs', // 요청할 서버url
+			    url : '/bbsReply', // 요청할 서버url
 			    async : true, // 비동기화 여부 (default : true)
 			    //headers : { // Http header
 			    //  "Content-Type" : "application/json",
@@ -153,7 +190,8 @@
 			    	uls = ""
 						$.each(result , function(idx, obj) {
 							uls +="<li class='time-label'>"+ obj.rWriter + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
-							uls += obj.rContent
+							uls += obj.rContent + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+							if(obj.rWriter == '${user.id}') uls += "<a href='javascript:void(0)' id='replyDel' onclick='removeReply("+ obj.rSeq +");'>x</a>"
 							uls +="</li>"
 						})
 						$("#rList").html(uls);
