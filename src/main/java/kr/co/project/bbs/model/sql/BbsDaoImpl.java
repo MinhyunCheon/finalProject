@@ -21,10 +21,20 @@ public class BbsDaoImpl implements BbsDao {
 	public List<Object> selectBbsSearch(Object obj) {
 		return sqlSession.selectList("bbs.selectBbsSearch", obj);
 	}
+	
+	@Override
+	public List<Object> selectBbsReply(Object obj) {
+		return sqlSession.selectList("bbs.selectBbsReply", obj);
+	}
 
 	@Override
 	public int insertBbs(Object obj) {
 		return sqlSession.insert("bbs.insertBbs", obj);
+	}
+	
+	@Override
+	public int insertBbsReply(Object obj) {
+		return sqlSession.insert("bbs.insertBbsReply", obj);
 	}
 
 	@Override
@@ -41,5 +51,5 @@ public class BbsDaoImpl implements BbsDao {
 	public int deleteBbs(Object obj) {
 		return sqlSession.delete("bbs.deleteBbs", obj);
 	}
-	
+
 }

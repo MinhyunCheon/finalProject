@@ -22,10 +22,20 @@ public class BbsSvImpl implements BbsSv {
 	public List<Object> selectBbsSearchSv(Object obj) {
 		return bbsDao.selectBbsSearch(obj);
 	}
+	
+	@Override
+	public List<Object> selectBbsReply(Object obj) {
+		return bbsDao.selectBbsReply(obj);
+	}
 
 	@Override
 	public int insertBbsSv(Object obj) {
 		return bbsDao.insertBbs(obj);
+	}
+	
+	@Override
+	public int insertBbsReplySv(Object obj) {
+		return bbsDao.insertBbsReply(obj);
 	}
 
 	@Override

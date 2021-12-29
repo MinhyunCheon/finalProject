@@ -34,6 +34,9 @@
  			  LIKE '%'||#{searchText}||'%'
  			ORDER BY SEQ DESC
  	</select>
+ 	<select id="selectBbsReply" parameterType="bbs_reply_dto" resultType="bbs_reply_dto">
+ 		SELECT * FROM REPLY_TBL WHERE SEQ = #{seq}
+ 	</select>
  	
  	<insert id="insertBbs" parameterType="bbs_dto">
  		INSERT INTO BBS_TBL VALUES(
@@ -43,6 +46,15 @@
  			, #{writer}
  			, SYSDATE
  			, 0
+ 		)
+ 	</insert>
+ 	<insert id="insertBbsReply" parameterType="bbs_reply_dto">
+ 		INSERT INTO REPLY_TBL VALUES(
+ 			REPLY_SEQ.NEXTVAL
+ 			, #{seq}
+ 			, #{rWriter}
+ 			, #{rContent}
+ 			, SYSDATE
  		)
  	</insert>
  	

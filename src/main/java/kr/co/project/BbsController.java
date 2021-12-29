@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.project.bbs.model.vo.BbsDTO;
+import kr.co.project.bbs.model.vo.BbsReplyDTO;
 import kr.co.project.bbs.model.vo.BbsSearchDTO;
 import kr.co.project.bbs.model.vo.BbsVO;
 import kr.co.project.bbs.service.BbsSv;
@@ -28,7 +29,15 @@ public class BbsController {
 	@RequestMapping(value = "read", method = RequestMethod.GET)
 	public ModelAndView read(BbsVO bv) {
 		if(bbsSv.updateBbsViewCntSv(bv) != 1) System.out.println("ViewCnt update Error");
-		return new ModelAndView("read", "bbs", bv);
+		
+		BbsReplyDTO brd = new BbsReplyDTO();
+		brd.setSeq(bv.getSeq());
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("read");
+		mav.addObject("bbs", bv);
+		mav.addObject("rList", bbsSv.selectBbsReply(brd));
+		
+		return mav;
 	}
 	
 	@RequestMapping(value = "registForm", method = RequestMethod.GET)
@@ -62,5 +71,12 @@ public class BbsController {
 	public ModelAndView modify(BbsVO bv) {
 		bbsSv.updateBbsSv(bv);
 		return new ModelAndView("read", "bbs", bv);
+	}
+	
+	@RequestMapping(value = "replyBbs", method = RequestMethod.POST)
+	@ResponseBody
+	public List<Object> reply(BbsReplyDTO brd) {
+		bbsSv.insertBbsReplySv(brd);
+		return bbsSv.selectBbsReply(brd);
 	}
 }
